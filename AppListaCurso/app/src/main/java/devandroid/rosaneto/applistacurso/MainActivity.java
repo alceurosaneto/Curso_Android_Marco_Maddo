@@ -9,6 +9,9 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
+    //comentario apenas p testar o git
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
