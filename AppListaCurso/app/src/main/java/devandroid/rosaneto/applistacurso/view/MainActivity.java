@@ -1,4 +1,4 @@
-package devandroid.rosaneto.applistacurso;
+package devandroid.rosaneto.applistacurso.view;
 
 import android.os.Bundle;
 
@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import devandroid.rosaneto.applistacurso.R;
 
 public class MainActivity extends AppCompatActivity {
     //comentario apenas p testar o git
