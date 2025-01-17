@@ -2,8 +2,10 @@ package devandroid.rosaneto.applistacurso.view;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -41,11 +43,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
         pessoa = new Pessoa();
+        /*
         pessoa.setPrimeiroNome("Alceu");
         pessoa.setSobreNome("Rosa");
         pessoa.setCursoDesejado("Android");
         pessoa.setTelefoneContato("19 996087124");
-
+        */
         outraPessoa = new Pessoa();
         outraPessoa.setPrimeiroNome("ze");
         outraPessoa.setSobreNome("felipe");
@@ -66,7 +69,35 @@ public class MainActivity extends AppCompatActivity {
         editCursoDesejado.setText(pessoa.getCursoDesejado());
         editTelefoneContato.setText(pessoa.getTelefoneContato());
 
+        btnLimpar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editPrimeiroNome.setText("");
+                editSobrenome.setText("");
+                editCursoDesejado.setText("");
+                editTelefoneContato.setText("");
+            }
+        });
 
+        btnSalvar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pessoa.setPrimeiroNome(editPrimeiroNome.getText().toString());
+                pessoa.setSobreNome(editSobrenome.getText().toString());
+                pessoa.setCursoDesejado(editCursoDesejado.getText().toString());
+                pessoa.setTelefoneContato(editTelefoneContato.getText().toString());
+                Log.i("POOAndroid", pessoa.toString());
+                Toast.makeText( MainActivity.this,"Salvo....",Toast.LENGTH_LONG).show();
+            }
+        });
+
+        btnFinalizar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText( MainActivity.this,"Volte Sempre"+pessoa.toString(),Toast.LENGTH_LONG).show();
+                finish();
+            }
+        });
 
         /*
         dadosPessoa = "Primeiro nome: ";
@@ -86,10 +117,10 @@ public class MainActivity extends AppCompatActivity {
         dadosOutraPessoa += pessoa.getCursoDesejado();
         dadosOutraPessoa += "Telefone de Contato: ";
         dadosOutraPessoa += pessoa.getTelefoneContato();
-        */
 
         Log.i("POOAndroid", pessoa.toString());
         Log.i("POOAndroid", outraPessoa.toString());
+        */
 
 
     }
