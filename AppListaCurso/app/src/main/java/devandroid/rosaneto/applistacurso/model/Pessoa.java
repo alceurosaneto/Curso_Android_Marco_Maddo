@@ -1,4 +1,8 @@
 package devandroid.rosaneto.applistacurso.model;
 
-public class Curso {
+public class Pessoa {
+
+    private String nome;
+
+
 }
