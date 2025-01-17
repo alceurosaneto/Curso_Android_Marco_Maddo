@@ -2,6 +2,8 @@ package devandroid.rosaneto.applistacurso.view;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +19,14 @@ public class MainActivity extends AppCompatActivity {
     Pessoa outraPessoa;
     String dadosPessoa;
     String dadosOutraPessoa;
+
+    EditText editPrimeiroNome;
+    EditText editSobrenome;
+    EditText editCursoDesejado;
+    EditText editTelefoneContato;
+    Button btnLimpar;
+    Button btnSalvar;
+    Button btnFinalizar;
 
 
     @Override
@@ -42,6 +52,23 @@ public class MainActivity extends AppCompatActivity {
         outraPessoa.setCursoDesejado("java");
         outraPessoa.setTelefoneContato("11 11111111111");
 
+        editPrimeiroNome = findViewById(R.id.editPrimeiroNome);
+        editSobrenome = findViewById(R.id.editSobrenome);
+        editCursoDesejado = findViewById(R.id.editCursoDesejado);
+        editTelefoneContato = findViewById(R.id.editTelefoneContato);
+        btnLimpar = findViewById(R.id.btnLimpar);
+        btnSalvar = findViewById(R.id.btnSalvar);
+        btnFinalizar = findViewById(R.id.btnFinalizar);
+
+
+        editPrimeiroNome.setText(pessoa.getPrimeiroNome());
+        editSobrenome.setText(pessoa.getSobreNome());
+        editCursoDesejado.setText(pessoa.getCursoDesejado());
+        editTelefoneContato.setText(pessoa.getTelefoneContato());
+
+
+
+        /*
         dadosPessoa = "Primeiro nome: ";
         dadosPessoa += pessoa.getPrimeiroNome();
         dadosPessoa += "Sobrenome: ";
@@ -59,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
         dadosOutraPessoa += pessoa.getCursoDesejado();
         dadosOutraPessoa += "Telefone de Contato: ";
         dadosOutraPessoa += pessoa.getTelefoneContato();
+        */
 
         Log.i("POOAndroid", pessoa.toString());
         Log.i("POOAndroid", outraPessoa.toString());
