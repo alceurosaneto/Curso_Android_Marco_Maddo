@@ -14,9 +14,11 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import devandroid.rosaneto.applistacurso.R;
+import devandroid.rosaneto.applistacurso.controller.PessoaController;
 import devandroid.rosaneto.applistacurso.model.Pessoa;
 
 public class MainActivity extends AppCompatActivity {
+    PessoaController controller;
     Pessoa pessoa;
     Pessoa outraPessoa;
     EditText editPrimeiroNome;
@@ -38,6 +40,10 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        controller = new PessoaController();
+        controller.toString();
+
 
         pessoa = new Pessoa();
         //teste de dados com instancia pessoa
@@ -86,6 +92,8 @@ public class MainActivity extends AppCompatActivity {
                 pessoa.setTelefoneContato(editTelefoneContato.getText().toString());
                 Log.i("POOAndroid", pessoa.toString());
                 Toast.makeText(MainActivity.this, "Salvo....", Toast.LENGTH_LONG).show();
+
+                controller.salvar(pessoa);
             }
         });
 
