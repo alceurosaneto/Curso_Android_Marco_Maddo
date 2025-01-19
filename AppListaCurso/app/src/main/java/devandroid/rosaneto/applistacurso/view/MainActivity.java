@@ -55,34 +55,27 @@ public class MainActivity extends AppCompatActivity {
         controller = new PessoaController();
         controller.toString();
 
-        //teste de dados com instancia pessoa
+        //Carregando os dados salvos no sharedPreferences para a tela do App
         pessoa = new Pessoa();
-        pessoa.setPrimeiroNome("Alceu");
-        pessoa.setSobreNome("Rosa");
-        pessoa.setCursoDesejado("Android");
-        pessoa.setTelefoneContato("19 996087124");
-
-        //teste de dados com instancia outraPessoa
-        outraPessoa = new Pessoa();
-        outraPessoa.setPrimeiroNome("ze");
-        outraPessoa.setSobreNome("felipe");
-        outraPessoa.setCursoDesejado("java");
-        outraPessoa.setTelefoneContato("11 11111111111");
+        pessoa.setPrimeiroNome(preferences.getString("primeiroNome",""));
+        pessoa.setSobreNome(preferences.getString("sobreNome",""));
+        pessoa.setCursoDesejado(preferences.getString("cursoDesejado",""));
+        pessoa.setTelefoneContato(preferences.getString("telefoneContato",""));
 
         //Criando o link entre a tela inicial e os objetos
         editPrimeiroNome = findViewById(R.id.editPrimeiroNome);
         editSobrenome = findViewById(R.id.editSobrenome);
         editCursoDesejado = findViewById(R.id.editCursoDesejado);
         editTelefoneContato = findViewById(R.id.editTelefoneContato);
-        btnLimpar = findViewById(R.id.btnLimpar);
-        btnSalvar = findViewById(R.id.btnSalvar);
-        btnFinalizar = findViewById(R.id.btnFinalizar);
 
-        //carregando os valores da instancia pessoa para a tela inicial
         editPrimeiroNome.setText(pessoa.getPrimeiroNome());
         editSobrenome.setText(pessoa.getSobreNome());
         editCursoDesejado.setText(pessoa.getCursoDesejado());
         editTelefoneContato.setText(pessoa.getTelefoneContato());
+
+        btnLimpar = findViewById(R.id.btnLimpar);
+        btnSalvar = findViewById(R.id.btnSalvar);
+        btnFinalizar = findViewById(R.id.btnFinalizar);
 
         btnLimpar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
+
         Log.i("POOAndroid", pessoa.toString());
-        Log.i("POOAndroid", outraPessoa.toString());
     }
 }
