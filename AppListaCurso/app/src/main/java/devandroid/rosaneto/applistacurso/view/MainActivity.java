@@ -24,6 +24,7 @@ import devandroid.rosaneto.applistacurso.model.Pessoa;
 public class MainActivity extends AppCompatActivity {
     //Adicionando shared Preferences
     SharedPreferences preferences;
+    SharedPreferences.Editor listaVip;
     public static final String NOME_PREFERENCES = "pref_listavip";
     PessoaController controller;
     Pessoa pessoa;
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         });
         //Criando Arquivo de preferencias
         preferences = getSharedPreferences(NOME_PREFERENCES,0);
-        SharedPreferences.Editor listaVip = preferences.edit();
+        listaVip = preferences.edit();
 
         //instanciando o PessoaController como controller
         controller = new PessoaController();
@@ -84,6 +85,9 @@ public class MainActivity extends AppCompatActivity {
                 editSobrenome.setText("");
                 editCursoDesejado.setText("");
                 editTelefoneContato.setText("");
+
+                listaVip.clear();
+                listaVip.apply();
             }
         });
 
