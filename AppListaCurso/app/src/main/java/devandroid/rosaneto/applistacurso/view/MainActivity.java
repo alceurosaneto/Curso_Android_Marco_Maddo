@@ -1,8 +1,5 @@
 package devandroid.rosaneto.applistacurso.view;
 
-import android.content.ComponentName;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,7 +8,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -22,13 +18,8 @@ import devandroid.rosaneto.applistacurso.controller.PessoaController;
 import devandroid.rosaneto.applistacurso.model.Pessoa;
 
 public class MainActivity extends AppCompatActivity {
-    //Adicionando shared Preferences
-    SharedPreferences preferences;
-    SharedPreferences.Editor listaVip;
-    public static final String NOME_PREFERENCES = "pref_listavip";
     PessoaController controller;
     Pessoa pessoa;
-    Pessoa outraPessoa;
     EditText editPrimeiroNome;
     EditText editSobrenome;
     EditText editCursoDesejado;
@@ -48,20 +39,14 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        //Criando Arquivo de preferencias
-        preferences = getSharedPreferences(NOME_PREFERENCES,0);
-        listaVip = preferences.edit();
 
         //instanciando o PessoaController como controller
-        controller = new PessoaController();
+        controller = new PessoaController(MainActivity.this);
         controller.toString();
 
         //Carregando os dados salvos no sharedPreferences para a tela do App
         pessoa = new Pessoa();
-        pessoa.setPrimeiroNome(preferences.getString("primeiroNome",""));
-        pessoa.setSobreNome(preferences.getString("sobreNome",""));
-        pessoa.setCursoDesejado(preferences.getString("cursoDesejado",""));
-        pessoa.setTelefoneContato(preferences.getString("telefoneContato",""));
+        controller.buscar(pessoa);
 
         //Criando o link entre a tela inicial e os objetos
         editPrimeiroNome = findViewById(R.id.editPrimeiroNome);
@@ -86,8 +71,7 @@ public class MainActivity extends AppCompatActivity {
                 editCursoDesejado.setText("");
                 editTelefoneContato.setText("");
 
-                listaVip.clear();
-                listaVip.apply();
+                controller.limpar();
             }
         });
 
@@ -100,12 +84,6 @@ public class MainActivity extends AppCompatActivity {
                 pessoa.setTelefoneContato(editTelefoneContato.getText().toString());
                 Log.i("POOAndroid", pessoa.toString());
                 Toast.makeText(MainActivity.this, "Salvo....", Toast.LENGTH_LONG).show();
-
-                listaVip.putString("primeiroNome",pessoa.getPrimeiroNome());
-                listaVip.putString("sobreNome",pessoa.getSobreNome());
-                listaVip.putString("cursoDesejado",pessoa.getCursoDesejado());
-                listaVip.putString("telefoneContato",pessoa.getTelefoneContato());
-                listaVip.apply();
 
                 controller.salvar(pessoa);
             }
