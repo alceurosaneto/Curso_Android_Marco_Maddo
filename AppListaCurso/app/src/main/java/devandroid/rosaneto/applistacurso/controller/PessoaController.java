@@ -1,12 +1,24 @@
 package devandroid.rosaneto.applistacurso.controller;
 
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 
 import devandroid.rosaneto.applistacurso.model.Pessoa;
+import devandroid.rosaneto.applistacurso.view.MainActivity;
 
 public class PessoaController {
+    SharedPreferences preferences;
+    SharedPreferences.Editor listaVip;
+
+    public static final String NOME_PREFERENCES = "pref_listavip";
+
+    public PessoaController(MainActivity mainActivity){
+        preferences = mainActivity.getSharedPreferences(NOME_PREFERENCES,0);
+        listaVip = preferences.edit();
+
+    }
 
 
     @NonNull
@@ -15,9 +27,23 @@ public class PessoaController {
         Log.d("MVC_Controller","Controller Inicializada");
         return super.toString();
     }
-
-    public void salvar(Pessoa pessoa) {
+        public void salvar(Pessoa pessoa) {
         Log.d("MVC_Controller","Salvo: "+pessoa.toString());
+
+        listaVip.putString("primeiroNome",pessoa.getPrimeiroNome());
+        listaVip.putString("sobreNome",pessoa.getSobreNome());
+        listaVip.putString("cursoDesejado",pessoa.getCursoDesejado());
+        listaVip.putString("telefoneContato",pessoa.getTelefoneContato());
+        listaVip.apply();
+
+
+    }
+
+    public void salvar(){
+
+    }
+
+    public void buscar(){
 
     }
 }
