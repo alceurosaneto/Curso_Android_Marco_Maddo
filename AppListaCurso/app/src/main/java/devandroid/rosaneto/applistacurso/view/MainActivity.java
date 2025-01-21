@@ -17,8 +17,12 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.List;
+
 import devandroid.rosaneto.applistacurso.R;
+import devandroid.rosaneto.applistacurso.controller.CursoController;
 import devandroid.rosaneto.applistacurso.controller.PessoaController;
+import devandroid.rosaneto.applistacurso.model.Curso;
 import devandroid.rosaneto.applistacurso.model.Pessoa;
 
 public class MainActivity extends AppCompatActivity {
@@ -27,8 +31,9 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences.Editor listaVip;
     public static final String NOME_PREFERENCES = "pref_listavip";
     PessoaController controller;
+    CursoController cursoController;
     Pessoa pessoa;
-    Pessoa outraPessoa;
+    List<Curso> listaDeCursos;
     EditText editPrimeiroNome;
     EditText editSobrenome;
     EditText editCursoDesejado;
@@ -55,6 +60,9 @@ public class MainActivity extends AppCompatActivity {
         //instanciando o PessoaController como controller
         controller = new PessoaController();
         controller.toString();
+
+        cursoController = new CursoController();
+        listaDeCursos = cursoController.getListaDeCursos();
 
         //Carregando os dados salvos no sharedPreferences para a tela do App
         pessoa = new Pessoa();
